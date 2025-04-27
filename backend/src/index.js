@@ -35,10 +35,6 @@ if (process.env.NODE_ENV === "production") {
     });
 }
 
-// app.all('/*', (req, res) => {
-//     res.status(404).json({ error: 'Route not found' });
-//   });
-
 server.listen(PORT, () => {
     console.log(`server is running on port: ${PORT}`);
     connectDB()
