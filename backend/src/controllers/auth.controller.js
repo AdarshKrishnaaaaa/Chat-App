@@ -22,7 +22,7 @@ export const signup = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, salt)
 
         const newUser = new User({
-            fullName: fullName,
+            fullName,
             email,
             password: hashedPassword
         })
