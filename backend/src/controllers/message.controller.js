@@ -17,7 +17,7 @@ export const getUsersForSidebar = async (req, res) => {
 
 export const getMessages = async (req, res) => {
     try {
-        const { id: userToChatId } = req.params;
+        const { getId: userToChatId } = req.params;
         const myId = req.user._id;
 
         const messages = await Message.find({
@@ -34,10 +34,10 @@ export const getMessages = async (req, res) => {
     }
 }
 
-export const sendMessage = async (req,res) => {
+export const sendMessage = async (req, res) => {
     try {
-        const {text,image} = req.body;
-        const {id:receiverId}=req.params
+        const { text, image } = req.body;
+        const { sendId: receiverId } = req.params
         const senderId = req.user._id;
 
         let imageUrl;
@@ -51,14 +51,14 @@ export const sendMessage = async (req,res) => {
             senderId,
             receiverId,
             text,
-            image:imageUrl,
+            image: imageUrl,
         });
 
         await newMessage.save();
 
         const receiverSocketId = getReceiverSocketId(receiverId);
         if (receiverSocketId) {
-            io.to(receiverSocketId).emit("newMessage",newMessage)
+            io.to(receiverSocketId).emit("newMessage", newMessage)
         }
 
         res.status(201).json(newMessage)
