@@ -17,7 +17,7 @@ export const getUsersForSidebar = async (req, res) => {
 
 export const getMessages = async (req, res) => {
     try {
-        const userToChatId = req.params.id;
+        const userToChatId = req.params.userId;
         const myId = req.user._id;
 
         const messages = await Message.find({
