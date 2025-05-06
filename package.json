@@ -15,5 +15,8 @@
   "license": "ISC",
   "dependencies": {
     "daisyui": "^5.0.28"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.4.1"
   }
 }
